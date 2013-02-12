@@ -1,0 +1,6 @@
+## Interface: 50100
+## Title: Look! New Recipe!
+## Notes: Custom alerts for recipe hunters.
+## SavedVariables: LookNewRecipe_Settings
+
+LookNewRecipe.lua
