@@ -3,4 +3,4 @@
 ## Notes: Custom alerts for recipe hunters.
 ## SavedVariables: LookNewRecipe_Settings
 
-LookNewRecipe.lua
+LookNewRecipe.xml

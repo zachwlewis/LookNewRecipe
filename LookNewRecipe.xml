@@ -1,0 +1,84 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ .. \FrameXML\UI.xsd">
+
+	<Script file="LookNewRecipe.lua"/>
+	<Frame name="LookNewRecipeDrawer" parent="MerchantFrame" frameStrata="BACKGROUND" toplevel="false">
+
+		<Size>
+			<AbsDimension x="256" y="400" />
+		</Size>
+		
+		<Anchors>
+			<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-32" y="-32"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BORDER">
+				
+			</Layer>
+		</Layers>
+		
+		<!--
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" tile="true" edgeFile="Interface\DialogFrame\UI-DialogBox-Border">
+			<TileSize>
+				<AbsValue val="32" />
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32" />
+			</EdgeSize>
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />
+			</BackgroundInsets>
+		</Backdrop>
+		-->
+
+		<Frames>
+			<Button name="LookNewRecipeDrawerTab1" inherits="CharacterFrameTabButtonTemplate" id="1" text="New">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="MerchantFrameTab2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-16" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetText("", 1.0,1.0,1.0 );
+					</OnEnter>
+					<OnLeave function="GameTooltip_Hide"/>
+					<OnClick>
+						-- PanelTemplates_SetTab(LookNewRecipeDrawer, self:GetID());
+					</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="LookNewRecipeDrawerTab2" inherits="CharacterFrameTabButtonTemplate" id="2" text="All">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="LookNewRecipeDrawerTab1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="-16" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+						GameTooltip:SetText("", 1.0,1.0,1.0 );
+					</OnEnter>
+					<OnLeave function="GameTooltip_Hide"/>
+					<OnClick>
+						-- PanelTemplates_SetTab(LookNewRecipeDrawer, self:GetID());
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+
+		<Scripts>
+			<OnLoad function="LookNewRecipeDrawer_OnLoad"/>
+			<OnShow function="LookNewRecipeDrawer_OnShow"/>
+		</Scripts>
+	</Frame>
+</Ui>

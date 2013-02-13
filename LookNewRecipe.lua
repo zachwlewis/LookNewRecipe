@@ -7,6 +7,45 @@ LookNewRecipe_Settings = {}
 
 LookNewRecipe = {}
 
+-- Frame Events
+
+function LookNewRecipeDrawer_OnLoad(self)
+  -- Tab Handling code
+  PanelTemplates_SetNumTabs(self, 2);
+  LookNewRecipeDrawer_UpdateTabs(0, 0)
+end
+
+function LookNewRecipeDrawer_OnShow()
+end
+
+function LookNewRecipeDrawer_UpdateTabs(allRecipeCount, newRecipeCount)
+  -- Handle all recipes
+  if allRecipeCount > 0 then
+    LookNewRecipeDrawerTab2:SetText("All ("..allRecipeCount..")")
+    PanelTemplates_EnableTab(LookNewRecipeDrawer, 2)
+    PanelTemplates_SetTab(LookNewRecipeDrawer, 2);
+  else
+    LookNewRecipeDrawerTab2:SetText("All")
+    PanelTemplates_DisableTab(LookNewRecipeDrawer, 2)
+    PanelTemplates_DeselectTab(LookNewRecipeDrawerTab2)
+  end
+
+  -- Handle new recipes
+  if newRecipeCount > 0 then
+    LookNewRecipeDrawerTab1:SetText("New ("..newRecipeCount..")")
+    PanelTemplates_EnableTab(LookNewRecipeDrawer, 1)
+    PanelTemplates_SetTab(LookNewRecipeDrawer, 1);
+  else
+    LookNewRecipeDrawerTab1:SetText("New")
+    PanelTemplates_DisableTab(LookNewRecipeDrawer, 1)
+    PanelTemplates_DeselectTab(LookNewRecipeDrawerTab1)
+  end
+
+  -- Update the tabs
+  PanelTemplates_UpdateTabs(LookNewRecipeDrawer)
+
+end
+
 -- Function declaration.
 local onEvent, checkMerchantInventory, isItemAlreadyKnown
 
@@ -56,7 +95,11 @@ function checkMerchantInventory()
     end
   end
 
+print("loop")
+  LookNewRecipeDrawer_UpdateTabs(recipeCount, usableCount)
+
   scanSuccessful = true
+  
 end
 
 function isItemAlreadyKnown(item)   
@@ -104,11 +147,14 @@ end
 
 function LookNewRecipe.MERCHANT_SHOW(...)
   scanSuccessful = false
+  LookNewRecipeDrawer_UpdateTabs(0, 0)
   checkMerchantInventory()
+  LookNewRecipeDrawer:Show()
 end
 
 function LookNewRecipe.MERCHANT_CLOSED(...)
   scanSuccessful = false
+  LookNewRecipeDrawer:Hide()
 end
 
 function LookNewRecipe.MERCHANT_UPDATE(...)
