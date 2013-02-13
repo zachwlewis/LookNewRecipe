@@ -95,7 +95,6 @@ function checkMerchantInventory()
     end
   end
 
-print("loop")
   LookNewRecipeDrawer_UpdateTabs(recipeCount, usableCount)
 
   scanSuccessful = true
